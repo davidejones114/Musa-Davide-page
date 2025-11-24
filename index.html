@@ -1,296 +1,170 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/styles.css b/styles.css
-new file mode 100644
-index 0000000000000000000000000000000000000000..c70b3a636f2c25fd1117bc0873c51281d618250e
---- /dev/null
-+++ b/styles.css
-@@ -0,0 +1,286 @@
-+:root {
-+    --bg: #0c111d;
-+    --panel: #111827;
-+    --panel-alt: #0f172a;
-+    --text: #e5e7eb;
-+    --muted: #9ca3af;
-+    --accent: #7c3aed;
-+    --accent-2: #22d3ee;
-+    --border: #1f2937;
-+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-+    font-size: 16px;
-+}
+-<!DOCTYPE html>
+-<html lang="en">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Your Business Landing Page</title>
+-    <link rel="stylesheet" href="styles.css">
+-</head>
+-<body>
+-    <!-- Header with business name and description -->
+-    <header>
+-        <h1>Musa&Davide</h1>
+-        <p>Welcome to our website! We offer amazing services to help you achieve your goals.</p>
+-    </header>
+-
+-    <!-- Services Section -->
+-    <section id="services">
+-        <h2>Our Services</h2>
+-        <div class="service">
+-            <h3>Service 1</h3>
+-            <p>Description of service 1</p>
+-            <p>Price: $100</p>
+-        </div>
+-        <div class="service">
+-            <h3>Service 2</h3>
+-            <p>Description of service 2</p>
+-            <p>Price: $200</p>
+-        </div>
+-    </section>
+-
+-    <!-- Contact Section -->
+-    <section id="contact">
+-        <h2>Contact Us</h2>
+-        <form id="contact-form">
+-            <label for="name">Your Name:</label>
+-            <input type="text" id="name" required>
+-            <label for="email">Your Email:</label>
+-            <input type="email" id="email" required>
+-            <button type="submit">Send Message</button>
+-        </form>
+-    </section>
+-
+-    <!-- Links to Other Apps -->
+-    <section id="links">
+-        <h2>Links to Our Apps</h2>
+-        <ul>
+-            <li><a href="http://link-to-app-1.com">App 1</a></li>
+-            <li><a href="http://link-to-app-2.com">App 2</a></li>
+-        </ul>
+-    </section>
+-
+-    <script src="script.js"></script>
+-</body>
+-</html>
+-
+-		
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Musa & Davide — Service Landing Page</title>
++    <link rel="preconnect" href="https://fonts.googleapis.com">
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
++    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
++    <link rel="stylesheet" href="styles.css">
++</head>
++<body>
++    <header class="hero">
++        <div class="hero__content">
++            <div class="badge">New</div>
++            <p class="eyebrow">Musa & Davide</p>
++            <h1>Smart solutions that put your business on autopilot.</h1>
++            <p class="lede">We combine strategy, design, and automation to launch your service fast—complete with direct messaging so clients can contact you instantly.</p>
++            <div class="cta-row">
++                <a class="btn primary" href="#plans">View tariffs</a>
++                <a class="btn secondary" href="#contact">Talk to us</a>
++            </div>
++            <p class="meta">Ready in days, optimized for mobile from day one.</p>
++        </div>
++        <div class="hero__card">
++            <h2>What we deliver</h2>
++            <ul>
++                <li>Conversion-ready landing pages</li>
++                <li>Interactive contact buttons (WhatsApp, Telegram, SMS)</li>
++                <li>Launch support and quick tweaks</li>
++            </ul>
++        </div>
++    </header>
 +
-+* {
-+    box-sizing: border-box;
-+}
++    <main>
++        <section id="plans" class="section">
++            <div class="section__header">
++                <p class="eyebrow">Tariffs</p>
++                <h2>Pick the plan that fits your launch.</h2>
++                <p class="lede">Transparent pricing with everything you need to start welcoming new customers.</p>
++            </div>
++            <div class="card-grid">
++                <article class="card">
++                    <div class="card__top">
++                        <h3>Starter</h3>
++                        <p>Perfect for a quick, clean presence.</p>
++                    </div>
++                    <div class="price">$99 <span>/ one-time</span></div>
++                    <ul class="features">
++                        <li>Single-page landing</li>
++                        <li>Clickable phone, SMS, and WhatsApp</li>
++                        <li>Basic analytics setup</li>
++                    </ul>
++                    <a class="btn ghost" href="#contact">Choose Starter</a>
++                </article>
 +
-+body {
-+    margin: 0;
-+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-+    background: radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.1), transparent 25%),
-+                radial-gradient(circle at 80% 0%, rgba(34, 211, 238, 0.08), transparent 22%),
-+                var(--bg);
-+    color: var(--text);
-+    line-height: 1.6;
-+    min-height: 100vh;
-+}
++                <article class="card card--highlight">
++                    <div class="card__top">
++                        <h3>Growth</h3>
++                        <p>For services that need more detail and trust.</p>
++                    </div>
++                    <div class="price">$199 <span>/ one-time</span></div>
++                    <ul class="features">
++                        <li>Multi-section landing with testimonials</li>
++                        <li>CTA buttons for WhatsApp, Telegram, SMS</li>
++                        <li>Speed + SEO tuning</li>
++                    </ul>
++                    <a class="btn primary" href="#contact">Choose Growth</a>
++                </article>
 +
-+h1, h2, h3 {
-+    margin: 0 0 0.5rem;
-+    line-height: 1.2;
-+}
++                <article class="card">
++                    <div class="card__top">
++                        <h3>Custom</h3>
++                        <p>We shape the experience around your exact offer.</p>
++                    </div>
++                    <div class="price">$349 <span>/ starting</span></div>
++                    <ul class="features">
++                        <li>Unique design & micro-interactions</li>
++                        <li>Integrations (calendars, payments, CRM)</li>
++                        <li>Ongoing support & iterations</li>
++                    </ul>
++                    <a class="btn ghost" href="#contact">Plan a call</a>
++                </article>
++            </div>
++        </section>
 +
-+p {
-+    margin: 0 0 1rem;
-+}
++        <section class="section section--alt" id="contact">
++            <div class="section__header">
++                <p class="eyebrow">Contact</p>
++                <h2>Tap to message us instantly.</h2>
++                <p class="lede">Choose your favorite channel below—each button opens your app ready to chat.</p>
++            </div>
++            <div class="contact-card">
++                <div class="contact-card__info">
++                    <p class="label">Direct line</p>
++                    <h3>+1 (234) 567-8900</h3>
++                    <p class="meta">Available Monday–Friday, 9:00–18:00.</p>
++                </div>
++                <div class="contact-actions">
++                    <a class="btn primary" href="https://wa.me/12345678900?text=Hi%20Musa%20and%20Davide%2C%20I%27m%20interested%20in%20your%20services." target="_blank" rel="noopener noreferrer">WhatsApp</a>
++                    <a class="btn secondary" href="https://t.me/yourusername" target="_blank" rel="noopener noreferrer">Telegram</a>
++                    <a class="btn ghost" href="sms:+12345678900">Text (SMS)</a>
++                    <a class="btn ghost" href="tel:+12345678900">Call now</a>
++                </div>
++            </div>
++            <p class="hint">Want social links? We can add Instagram, LinkedIn, or any channel you prefer.</p>
++        </section>
++    </main>
 +
-+ul {
-+    padding-left: 1.2rem;
-+    margin: 0;
-+}
-+
-+header, main, footer {
-+    max-width: 1100px;
-+    margin: 0 auto;
-+    padding: 1.5rem;
-+}
-+
-+.hero {
-+    display: grid;
-+    grid-template-columns: 1.2fr 1fr;
-+    gap: 1.5rem;
-+    padding-top: 2.5rem;
-+    align-items: center;
-+}
-+
-+.hero__content h1 {
-+    font-size: clamp(2rem, 4vw, 3rem);
-+    margin-bottom: 0.75rem;
-+}
-+
-+.hero__content .lede {
-+    max-width: 620px;
-+}
-+
-+.hero__card {
-+    background: var(--panel);
-+    border: 1px solid var(--border);
-+    border-radius: 16px;
-+    padding: 1.5rem;
-+    box-shadow: var(--shadow);
-+}
-+
-+.hero__card ul {
-+    list-style: none;
-+    padding: 0;
-+}
-+
-+.hero__card li {
-+    padding: 0.35rem 0;
-+    border-bottom: 1px solid var(--border);
-+}
-+
-+.hero__card li:last-child {
-+    border-bottom: none;
-+}
-+
-+.badge {
-+    display: inline-flex;
-+    align-items: center;
-+    gap: 0.35rem;
-+    padding: 0.35rem 0.75rem;
-+    border-radius: 999px;
-+    background: rgba(124, 58, 237, 0.16);
-+    color: #e0d7ff;
-+    font-weight: 600;
-+    margin-bottom: 0.75rem;
-+}
-+
-+.eyebrow {
-+    text-transform: uppercase;
-+    letter-spacing: 0.08em;
-+    font-weight: 600;
-+    color: var(--accent-2);
-+    margin-bottom: 0.35rem;
-+}
-+
-+.lede {
-+    color: var(--muted);
-+}
-+
-+.meta {
-+    color: var(--muted);
-+    font-size: 0.95rem;
-+}
-+
-+.cta-row {
-+    display: flex;
-+    flex-wrap: wrap;
-+    gap: 0.75rem;
-+    margin: 1rem 0;
-+}
-+
-+.btn {
-+    display: inline-flex;
-+    justify-content: center;
-+    align-items: center;
-+    gap: 0.4rem;
-+    padding: 0.75rem 1.1rem;
-+    border-radius: 10px;
-+    text-decoration: none;
-+    font-weight: 600;
-+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
-+    border: 1px solid transparent;
-+    color: #fff;
-+}
-+
-+.btn:hover {
-+    transform: translateY(-1px);
-+    box-shadow: var(--shadow);
-+}
-+
-+.btn.primary {
-+    background: linear-gradient(135deg, var(--accent), #5b21b6);
-+}
-+
-+.btn.secondary {
-+    background: rgba(34, 211, 238, 0.15);
-+    color: #c3f5ff;
-+    border-color: rgba(34, 211, 238, 0.5);
-+}
-+
-+.btn.ghost {
-+    background: rgba(255, 255, 255, 0.04);
-+    border-color: var(--border);
-+    color: var(--text);
-+}
-+
-+.section {
-+    margin-top: 3rem;
-+    background: var(--panel);
-+    border: 1px solid var(--border);
-+    border-radius: 18px;
-+    padding: 1.75rem;
-+    box-shadow: var(--shadow);
-+}
-+
-+.section--alt {
-+    background: var(--panel-alt);
-+}
-+
-+.section__header {
-+    max-width: 720px;
-+    margin-bottom: 1.5rem;
-+}
-+
-+.card-grid {
-+    display: grid;
-+    gap: 1rem;
-+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-+}
-+
-+.card {
-+    background: rgba(255, 255, 255, 0.02);
-+    border: 1px solid var(--border);
-+    border-radius: 14px;
-+    padding: 1.25rem;
-+    display: flex;
-+    flex-direction: column;
-+    gap: 0.75rem;
-+    position: relative;
-+    overflow: hidden;
-+}
-+
-+.card--highlight {
-+    border-color: rgba(124, 58, 237, 0.6);
-+    box-shadow: 0 15px 50px rgba(124, 58, 237, 0.18);
-+}
-+
-+.card__top p {
-+    color: var(--muted);
-+}
-+
-+.price {
-+    font-size: 1.75rem;
-+    font-weight: 700;
-+}
-+
-+.price span {
-+    color: var(--muted);
-+    font-size: 0.95rem;
-+    font-weight: 600;
-+}
-+
-+.features {
-+    list-style: none;
-+    padding: 0;
-+    margin: 0 0 0.5rem;
-+    color: var(--muted);
-+}
-+
-+.features li {
-+    padding: 0.35rem 0;
-+}
-+
-+.contact-card {
-+    display: grid;
-+    grid-template-columns: 1fr 1.1fr;
-+    gap: 1rem;
-+    align-items: center;
-+    background: rgba(255, 255, 255, 0.02);
-+    border: 1px solid var(--border);
-+    border-radius: 16px;
-+    padding: 1.5rem;
-+}
-+
-+.contact-card__info h3 {
-+    font-size: 1.4rem;
-+}
-+
-+.contact-actions {
-+    display: grid;
-+    gap: 0.75rem;
-+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-+}
-+
-+.label {
-+    color: var(--muted);
-+    margin-bottom: 0.4rem;
-+    font-weight: 600;
-+}
-+
-+.hint {
-+    margin-top: 1rem;
-+    color: var(--muted);
-+}
-+
-+.footer {
-+    text-align: center;
-+    color: var(--muted);
-+    margin: 2rem auto;
-+}
-+
-+@media (max-width: 900px) {
-+    .hero {
-+        grid-template-columns: 1fr;
-+    }
-+
-+    header, main, footer {
-+        padding: 1.25rem;
-+    }
-+}
-+
-+@media (max-width: 640px) {
-+    :root {
-+        font-size: 15px;
-+    }
-+
-+    .card-grid {
-+        grid-template-columns: 1fr;
-+    }
-+
-+    .contact-card {
-+        grid-template-columns: 1fr;
-+    }
-+}
- 
-EOF
-)
++    <footer class="footer">
++        <p>© 2024 Musa & Davide. Built for fast launches and real conversations.</p>
++    </footer>
++</body>
++</html>
