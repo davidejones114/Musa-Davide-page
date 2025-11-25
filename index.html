@@ -1,170 +1,113 @@
--<!DOCTYPE html>
--<html lang="en">
--<head>
--    <meta charset="UTF-8">
--    <meta name="viewport" content="width=device-width, initial-scale=1.0">
--    <title>Your Business Landing Page</title>
--    <link rel="stylesheet" href="styles.css">
--</head>
--<body>
--    <!-- Header with business name and description -->
--    <header>
--        <h1>Musa&Davide</h1>
--        <p>Welcome to our website! We offer amazing services to help you achieve your goals.</p>
--    </header>
--
--    <!-- Services Section -->
--    <section id="services">
--        <h2>Our Services</h2>
--        <div class="service">
--            <h3>Service 1</h3>
--            <p>Description of service 1</p>
--            <p>Price: $100</p>
--        </div>
--        <div class="service">
--            <h3>Service 2</h3>
--            <p>Description of service 2</p>
--            <p>Price: $200</p>
--        </div>
--    </section>
--
--    <!-- Contact Section -->
--    <section id="contact">
--        <h2>Contact Us</h2>
--        <form id="contact-form">
--            <label for="name">Your Name:</label>
--            <input type="text" id="name" required>
--            <label for="email">Your Email:</label>
--            <input type="email" id="email" required>
--            <button type="submit">Send Message</button>
--        </form>
--    </section>
--
--    <!-- Links to Other Apps -->
--    <section id="links">
--        <h2>Links to Our Apps</h2>
--        <ul>
--            <li><a href="http://link-to-app-1.com">App 1</a></li>
--            <li><a href="http://link-to-app-2.com">App 2</a></li>
--        </ul>
--    </section>
--
--    <script src="script.js"></script>
--</body>
--</html>
--
--		
-+<!DOCTYPE html>
-+<html lang="en">
-+<head>
-+    <meta charset="UTF-8">
-+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-+    <title>Musa & Davide — Service Landing Page</title>
-+    <link rel="preconnect" href="https://fonts.googleapis.com">
-+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-+    <link rel="stylesheet" href="styles.css">
-+</head>
-+<body>
-+    <header class="hero">
-+        <div class="hero__content">
-+            <div class="badge">New</div>
-+            <p class="eyebrow">Musa & Davide</p>
-+            <h1>Smart solutions that put your business on autopilot.</h1>
-+            <p class="lede">We combine strategy, design, and automation to launch your service fast—complete with direct messaging so clients can contact you instantly.</p>
-+            <div class="cta-row">
-+                <a class="btn primary" href="#plans">View tariffs</a>
-+                <a class="btn secondary" href="#contact">Talk to us</a>
-+            </div>
-+            <p class="meta">Ready in days, optimized for mobile from day one.</p>
-+        </div>
-+        <div class="hero__card">
-+            <h2>What we deliver</h2>
-+            <ul>
-+                <li>Conversion-ready landing pages</li>
-+                <li>Interactive contact buttons (WhatsApp, Telegram, SMS)</li>
-+                <li>Launch support and quick tweaks</li>
-+            </ul>
-+        </div>
-+    </header>
-+
-+    <main>
-+        <section id="plans" class="section">
-+            <div class="section__header">
-+                <p class="eyebrow">Tariffs</p>
-+                <h2>Pick the plan that fits your launch.</h2>
-+                <p class="lede">Transparent pricing with everything you need to start welcoming new customers.</p>
-+            </div>
-+            <div class="card-grid">
-+                <article class="card">
-+                    <div class="card__top">
-+                        <h3>Starter</h3>
-+                        <p>Perfect for a quick, clean presence.</p>
-+                    </div>
-+                    <div class="price">$99 <span>/ one-time</span></div>
-+                    <ul class="features">
-+                        <li>Single-page landing</li>
-+                        <li>Clickable phone, SMS, and WhatsApp</li>
-+                        <li>Basic analytics setup</li>
-+                    </ul>
-+                    <a class="btn ghost" href="#contact">Choose Starter</a>
-+                </article>
-+
-+                <article class="card card--highlight">
-+                    <div class="card__top">
-+                        <h3>Growth</h3>
-+                        <p>For services that need more detail and trust.</p>
-+                    </div>
-+                    <div class="price">$199 <span>/ one-time</span></div>
-+                    <ul class="features">
-+                        <li>Multi-section landing with testimonials</li>
-+                        <li>CTA buttons for WhatsApp, Telegram, SMS</li>
-+                        <li>Speed + SEO tuning</li>
-+                    </ul>
-+                    <a class="btn primary" href="#contact">Choose Growth</a>
-+                </article>
-+
-+                <article class="card">
-+                    <div class="card__top">
-+                        <h3>Custom</h3>
-+                        <p>We shape the experience around your exact offer.</p>
-+                    </div>
-+                    <div class="price">$349 <span>/ starting</span></div>
-+                    <ul class="features">
-+                        <li>Unique design & micro-interactions</li>
-+                        <li>Integrations (calendars, payments, CRM)</li>
-+                        <li>Ongoing support & iterations</li>
-+                    </ul>
-+                    <a class="btn ghost" href="#contact">Plan a call</a>
-+                </article>
-+            </div>
-+        </section>
-+
-+        <section class="section section--alt" id="contact">
-+            <div class="section__header">
-+                <p class="eyebrow">Contact</p>
-+                <h2>Tap to message us instantly.</h2>
-+                <p class="lede">Choose your favorite channel below—each button opens your app ready to chat.</p>
-+            </div>
-+            <div class="contact-card">
-+                <div class="contact-card__info">
-+                    <p class="label">Direct line</p>
-+                    <h3>+1 (234) 567-8900</h3>
-+                    <p class="meta">Available Monday–Friday, 9:00–18:00.</p>
-+                </div>
-+                <div class="contact-actions">
-+                    <a class="btn primary" href="https://wa.me/12345678900?text=Hi%20Musa%20and%20Davide%2C%20I%27m%20interested%20in%20your%20services." target="_blank" rel="noopener noreferrer">WhatsApp</a>
-+                    <a class="btn secondary" href="https://t.me/yourusername" target="_blank" rel="noopener noreferrer">Telegram</a>
-+                    <a class="btn ghost" href="sms:+12345678900">Text (SMS)</a>
-+                    <a class="btn ghost" href="tel:+12345678900">Call now</a>
-+                </div>
-+            </div>
-+            <p class="hint">Want social links? We can add Instagram, LinkedIn, or any channel you prefer.</p>
-+        </section>
-+    </main>
-+
-+    <footer class="footer">
-+        <p>© 2024 Musa & Davide. Built for fast launches and real conversations.</p>
-+    </footer>
-+</body>
-+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Landing Page</title>
+
+  <!-- Basic CSS styling -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px;
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    /* Contact section */
+    #contact {
+      margin: 60px auto;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .dropdown button {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .dropdown ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .dropdown ul li a {
+      display: block;
+      padding: 12px;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .dropdown ul li a:hover {
+      background: #f0f0f0;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LANDING SECTION -->
+  <header>
+    <h1>Welcome to My Page</h1>
+    <p>This is my simple landing page. Thanks for visiting!</p>
+  </header>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+
+    <div class="dropdown">
+      <button id="contact-button">Choose a contact method ▾</button>
+
+      <ul id="contact-menu" class="hidden">
+        <!-- Replace the links with your real info -->
+        <li><a href="https://wa.me/1234567890">WhatsApp</a></li>
+        <li><a href="https://t.me/yourusername">Telegram</a></li>
+        <li><a href="sms:+1234567890">Send SMS</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- JavaScript for dropdown -->
+  <script>
+    const btn = document.getElementById("contact-button");
+    const menu = document.getElementById("contact-menu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
+
+</body>
+</html>
