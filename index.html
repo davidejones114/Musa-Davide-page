@@ -2,148 +2,220 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Landing Page</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
-<img src="assets/logo-musa-davide.png" alt="Musa & Davide" class="logo">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Musa & Davide</title>
+  <meta name="description" content="Musa & Davide — simple landing page with contact links for WhatsApp, Telegram, and SMS." />
 
-  <!-- Basic CSS styling -->
+  <!-- Google Font for headings / fallback when image isn't available -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
+
   <style>
+    :root{
+      --bg: #f8f9fa;
+      --fg: #222;
+      --card: #ffffff;
+      --muted: #555;
+      --brand: #FFA500;       /* bright orange for accents */
+      --brand-dark: #CC7000;  /* darker orange if needed */
+      --border: rgba(0,0,0,0.12);
+      --shadow: rgba(0,0,0,0.08);
+      --shadow-strong: rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f8f9fa;
-      color: #333;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
     }
 
+    /* ----- Header / hero ----- */
     header {
-      text-align: left;
-      padding: 80px 20px;
-      background: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 64px 20px 40px;
+      text-align: center;
+      background: var(--card);
+      box-shadow: 0 2px 8px var(--shadow);
+      border-bottom: 1px solid var(--border);
     }
 
-.logo {
-  display: block;
-  margin: 24px auto;
-  width: clamp(200px, 30vw, 420px); /* min, preferred (as % of screen), max */
-  height: auto;
-}
+    /* PNG logo — responsive */
+    .logo {
+      display: block;
+      margin: 0 auto 16px;
+      width: clamp(200px, 30vw, 420px); /* responsive: min 200px, ideal 30% viewport, max 420px */
+      height: auto;                     /* keep the PNG's aspect ratio */
+    }
 
-
+    /* Fallback text if image fails to load (screen readers always get alt text) */
+    .site-title {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--brand);
+      letter-spacing: 2px;
+      margin: 0 0 8px;
+    }
 
     header p {
-      font-size: 5rem;
-      font-family: 'Baloo 2', cursive;
-      color: #FF9500;
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--muted);
     }
 
-    /* Contact section */
+    /* ----- Contact section ----- */
     #contact {
-      margin: 60px auto;
-      max-width: 400px;
+      max-width: 560px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
       text-align: center;
     }
 
+    #contact h2 {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      color: var(--fg);
+      margin: 0 0 14px;
+    }
+
+    .dropdown {
+      display: inline-block;
+      text-align: left;
+    }
+
     .dropdown button {
-      background-color: #007bff;
-      border: none;
-      color: white;
-      padding: 12px 20px;
-      font-size: 16px;
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--brand);
+      color: #fff;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 6px;
+      box-shadow: 0 2px 6px var(--shadow);
+    }
+    .dropdown button:hover { filter: brightness(0.98); }
+    .dropdown button:focus-visible {
+      outline: 3px solid var(--brand-dark);
+      outline-offset: 2px;
     }
 
-    .dropdown ul {
+    .menu {
+      margin-top: 10px;
       list-style: none;
-      padding: 0;
-      margin-top: 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 10px 20px var(--shadow-strong);
+      width: 260px;
     }
+    .menu.hidden { display: none; }
 
-    .dropdown ul li a {
+    .menu li a {
       display: block;
-      padding: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
       text-decoration: none;
-      color: #007bff;
+      color: #0a58ca;
+    }
+    .menu li a:hover,
+    .menu li a:focus-visible {
+      background: #f1f3f5;
     }
 
-    .dropdown ul li a:hover {
-      background: #f0f0f0;
-    }
+    /* tiny helper for emoji icons */
+    .menu li a .icon { margin-right: 8px; }
 
-    .hidden {
-      display: none;
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: no-preference) {
+      .menu { transition: opacity 120ms ease; }
+      .menu.hidden { opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- LANDING SECTION -->
   <header>
-  <img
-    src="Musa-Davide-page/assets.png"
-    alt="Musa &amp; Davide"
-    width="420"
-    height="160"
-    class="logo"
-    fetchpriority="high">
-  <p>Dog walks and animal care</p>
+    <!-- Replace the PNG path below with your actual file path if different -->
+    <img
+      src="Musa-Davide-page/assets.png"
+      alt="Musa &amp; Davide logo"
+      class="logo"
+      decoding="async"
+      fetchpriority="high">
+    <!-- Optional text fallback if image is missing (you can delete this line if you prefer only the image) -->
+    <h1 class="site-title" aria-hidden="true">Musa&amp;Davide</h1>
+
+    <p>Dog walks and animal care</p>
   </header>
 
-  <!-- CONTACT SECTION -->
   <section id="contact">
     <h2>Contact Me</h2>
 
     <div class="dropdown">
-      <button id="contact-button">Choose a contact method ▾</button>
+      <button id="contact-button" type="button" aria-haspopup="true" aria-expanded="false">
+        Choose a contact method ▾
+      </button>
 
-      <ul id="contact-menu" class="hidden">
-        <!-- Replace the links with your real info -->
-        <li><a href="https://wa.me/4915730213070">WhatsApp</a></li>
-        <li><a href="https://t.me/yourusername">Telegram</a></li>
-        <li><a href="sms:+1234567890">Send SMS</a></li>
+      <ul id="contact-menu" class="menu hidden" role="menu" aria-label="Contact options">
+        <!-- Replace the number below with YOUR WhatsApp number in international format, no '+' and no spaces -->
+        <li role="none">
+          <a role="menuitem" href="https://wa.me/015730213070" target="_blank" rel="noopener">
+            <span class="icon">📱</span> WhatsApp
+          </a>
+        </li>
+        <!-- Replace 'yourusername' with YOUR Telegram username (without the @) -->
+        <li role="none">
+          <a role="menuitem" href="https://t.me/Davidujon" target="_blank" rel="noopener">
+            <span class="icon">✈️</span> Telegram
+          </a>
+        </li>
+        <!-- Replace the number below with YOUR number; SMS links generally work on phones -->
+        <li role="none">
+          <a role="menuitem" href="sms:+4915730213070">
+            <span class="icon">💬</span> Send SMS
+          </a>
+        </li>
       </ul>
     </div>
   </section>
 
-  <!-- JavaScript for dropdown -->
   <script>
-    const btn = document.getElementById("contact-button");
-    const menu = document.getElementById("contact-menu");
+    // Dropdown toggle logic
+    const btn  = document.getElementById('contact-button');
+    const menu = document.getElementById('contact-menu');
 
-    btn.addEventListener("click", () => {
-      menu.classList.toggle("hidden");
+    function openMenu() {
+      menu.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      menu.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    function toggleMenu() {
+      if (menu.classList.contains('hidden')) openMenu(); else closeMenu();
+    }
+
+    btn.addEventListener('click', toggleMenu);
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    // Keyboard accessibility: Esc closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
     });
   </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
