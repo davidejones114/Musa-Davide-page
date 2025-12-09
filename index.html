@@ -4,45 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Musa & Davide</title>
-  <meta name="description" content="Musa & Davide — simple landing page with contact links for WhatsApp, Telegram, and SMS." />
-
-  <!-- Google Font for headings / fallback when image isn't available -->
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
+    :root {
       --bg: #f8f9fa;
       --fg: #222;
-      --card: #ffffff;
-      --muted: #555;
-      --brand: #FFA500;       /* bright orange for accents */
-      --brand-dark: #CC7000;  /* darker orange if needed */
+      --brand: #FFA500;       /* orange */
+      --brand-dark: #cc7000;  /* darker orange for hover/focus */
       --border: rgba(0,0,0,0.12);
-      --shadow: rgba(0,0,0,0.08);
-      --shadow-strong: rgba(0,0,0,0.12);
+      --shadow: rgba(0,0,0,0.10);
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       background: var(--bg);
       color: var(--fg);
       line-height: 1.5;
     }
 
-    /* ----- Header / hero ----- */
-  
-    /* PNG logo — responsive */
+    /* Header with logo */
+    header {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 64px 20px 40px;
+      text-align: center;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 8px var(--shadow);
+    }
     .logo {
       display: block;
       margin: 0 auto 16px;
-      width: clamp(200px, 30vw, 420px); /* responsive: min 200px, ideal 30% viewport, max 420px */
-      height: auto;                     /* keep the PNG's aspect ratio */
+      width: clamp(200px, 30vw, 420px);
+      height: auto;
+    }
+    header p {
+      margin: 0;
+      color: #555;
     }
 
-
+    /* Contact / dropdown */
+    #contact {
+      max-width: 560px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .dropdown {
+      display: inline-block;
+      text-align: left;
+      position: relative;
+    }
     .dropdown button {
       appearance: none;
       border: 1px solid var(--border);
@@ -50,7 +64,7 @@
       color: #fff;
       padding: 12px 16px;
       font-size: 1rem;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       box-shadow: 0 2px 6px var(--shadow);
     }
@@ -60,15 +74,18 @@
       outline-offset: 2px;
     }
 
+    /* ORANGE menu */
     .menu {
+      position: absolute;
+      z-index: 10;
       margin-top: 10px;
       list-style: none;
       padding: 8px;
+      border-radius: 12px;
+      background: var(--brand);
+      box-shadow: 0 10px 20px var(--shadow);
+      min-width: 240px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      box-shadow: 0 10px 20px var(--shadow-strong);
-      width: 260px;
     }
     .menu.hidden { display: none; }
 
@@ -77,63 +94,55 @@
       padding: 10px 12px;
       border-radius: 8px;
       text-decoration: none;
-      color: #0a58ca;
+      color: #fff;                 /* white text on orange */
+      font-weight: 600;
     }
     .menu li a:hover,
     .menu li a:focus-visible {
-      background: #f1f3f5;
+      background: var(--brand-dark); /* darker orange on hover */
     }
+    .menu li + li { margin-top: 4px; }
+    .icon { margin-right: 8px; }
 
-    /* tiny helper for emoji icons */
-    .menu li a .icon { margin-right: 8px; }
-
-    /* Respect reduced motion */
     @media (prefers-reduced-motion: no-preference) {
-      .menu { transition: opacity 120ms ease; }
-      .menu.hidden { opacity: 0; }
+      .menu { transition: opacity 120ms ease, transform 120ms ease; }
+      .menu.hidden { opacity: 0; transform: translateY(-4px); }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <!-- Replace the PNG path below with your actual file path if different -->
+    <!-- If your PNG is next to index.html and named exactly 'assets.png', keep the path below -->
     <img
       src="./logo.png"
       alt="Musa &amp; Davide logo"
       class="logo"
       decoding="async"
       fetchpriority="high">
-    <!-- Optional text fallback if image is missing (you can delete this line if you prefer only the image) -->
-    <h1 class="site-title" aria-hidden="true">Musa&amp;Davide</h1>
-
   </header>
 
   <section id="contact">
-    <h2>Contact Me</h2>
-
     <div class="dropdown">
       <button id="contact-button" type="button" aria-haspopup="true" aria-expanded="false">
         Choose a contact method ▾
       </button>
 
       <ul id="contact-menu" class="menu hidden" role="menu" aria-label="Contact options">
-        <!-- Replace the number below with YOUR WhatsApp number in international format, no '+' and no spaces -->
+        <!-- Replace with your real details -->
         <li role="none">
-          <a role="menuitem" href="https://wa.me/015730213070" target="_blank" rel="noopener">
+          <a role="menuitem" href="https://wa.me/15730213070" target="_blank" rel="noopener">
             <span class="icon">📱</span> WhatsApp
           </a>
         </li>
-        <!-- Replace 'yourusername' with YOUR Telegram username (without the @) -->
         <li role="none">
           <a role="menuitem" href="https://t.me/Davidujon" target="_blank" rel="noopener">
             <span class="icon">✈️</span> Telegram
           </a>
         </li>
-        <!-- Replace the number below with YOUR number; SMS links generally work on phones -->
         <li role="none">
           <a role="menuitem" href="sms:+4915730213070">
-            <span class="icon">💬</span> Send SMS
+            <span class="icon">💬</span> SMS
           </a>
         </li>
       </ul>
@@ -141,7 +150,7 @@
   </section>
 
   <script>
-    // Dropdown toggle logic
+    // Toggle dropdown
     const btn  = document.getElementById('contact-button');
     const menu = document.getElementById('contact-menu');
 
@@ -159,26 +168,15 @@
 
     btn.addEventListener('click', toggleMenu);
 
-    // Close when clicking outside
+    // Close on outside click
     document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !btn.contains(e.target)) {
-        closeMenu();
-      }
+      if (!menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
     });
 
-    // Keyboard accessibility: Esc closes
+    // Close on Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeMenu();
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
