@@ -35,30 +35,33 @@
       box-shadow: 0 2px 8px var(--shadow);
     }
 
-    /* Desktop logo hidden by default (mobile-first) */
-    .logo-desktop { display: none; }
+    /* Hide desktop logo by default (mobile-first) */
+.logo-desktop { display: none; }
 
-    /* Mobile logo: two images side-by-side */
-    .logo-mobile {
-      display: grid;
-      grid-template-columns: 1fr 1fr;   /* change to 1fr to stack vertically */
-      gap: 12px;
-      align-items: center;
-      width: clamp(220px, 60vw, 380px); /* keep mobile from getting too big */
-      margin: 0 auto 16px;
-    }
-    .logo-mobile img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+/* MOBILE: two logos stacked, bigger */
+.logo-mobile {
+  display: grid;
+  grid-template-columns: 1fr;   /* stack vertically */
+  gap: 28px;                    /* space between the two logos */
+  justify-items: center;        /* center each image */
+  width: min(95vw, 720px);      /* bigger on phones, but capped */
+  margin: 0 auto 16px;
+}
 
-    /* Tablet tweak (optional) */
+.logo-mobile img {
+  width: 100%;                  /* each logo fills the wrapper width */
+  height: auto;
+  display: block;
+}
+
+
     @media (min-width: 600px) {
-      .logo-mobile {
-        width: clamp(260px, 45vw, 460px);
-        gap: 16px;
-      }
+  .logo-mobile {
+    width: min(90vw, 760px);
+    gap: 32px;
+  }
+}
+
     }
 
     /* Desktop: show single wide logo, hide the two mobile images */
@@ -221,3 +224,4 @@
   </script>
 </body>
 </html>
+
