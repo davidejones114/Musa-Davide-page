@@ -129,12 +129,20 @@
 
   <header>
     <!-- If your PNG is next to index.html and named exactly 'assets.png', keep the path below -->
-    <img
-      src="./logo.png"
-      alt="Musa &amp; Davide logo"
-      class="logo"
-      decoding="async"
-      fetchpriority="high">
+   <picture>
+  <!-- Desktop image when viewport is 900px and wider -->
+  <source srcset="./logo-desktop.png" media="(min-width: 900px)">
+  <!-- Mobile image otherwise -->
+  <source srcset="./logo-mobile.png" media="(max-width: 899px)">
+  <!-- Fallback for older browsers -->
+  <img
+    src="./logo-mobile.png"
+    alt="Musa &amp; Davide logo"
+    class="logo"
+    decoding="async"
+    fetchpriority="high">
+</picture>
+
   </header>
 
   <section id="contact">
@@ -195,6 +203,7 @@
   </script>
 </body>
 </html>
+
 
 
 
