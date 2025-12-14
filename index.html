@@ -34,12 +34,27 @@
       border-bottom: 1px solid var(--border);
       box-shadow: 0 2px 8px var(--shadow);
     }
-    .logo {
-      display: block;
-      margin: 0 auto 16px;
-      width: clamp(200px, 30vw, 420px);
-      height: auto;
-    }
+   /* Base (phones): bigger on small screens */
+.logo {
+  display: block;
+  margin: 0 auto 16px;
+  width: clamp(260px, 60vw, 420px); /* min 260px, prefer 60% of screen, max 420px */
+  height: auto;
+}
+
+/* Tablets and up */
+@media (min-width: 600px) {
+  .logo {
+    width: clamp(320px, 40vw, 560px); /* allow it to grow larger on tablets */
+  }
+}
+
+/* Desktops and large laptops */
+@media (min-width: 1024px) {
+  .logo {
+    width: clamp(360px, 30vw, 680px); /* even larger max on desktop */
+  }
+}
     header p {
       margin: 0;
       color: #555;
@@ -180,6 +195,7 @@
   </script>
 </body>
 </html>
+
 
 
 
