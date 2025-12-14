@@ -127,23 +127,23 @@
 </head>
 <body>
 
-  <header>
-    <!-- If your PNG is next to index.html and named exactly 'assets.png', keep the path below -->
-   <picture>
-  <!-- Desktop image when viewport is 900px and wider -->
-  <source srcset="./logo.png" media="(min-width: 900px)">
-  <!-- Mobile image otherwise -->
-  <source srcset="./logoMobile.png" media="(max-width: 899px)">
-  <!-- Fallback for older browsers -->
+<header>
+  <!-- Desktop: one image -->
   <img
-    src="./logoMobile.png"
+    src="./logo-desktop.png"
     alt="Musa &amp; Davide logo"
     class="logo"
     decoding="async"
     fetchpriority="high">
-</picture>
 
-  </header>
+  <!-- Mobile: two images; wrapper is the 'logo' for screen readers -->
+  <div class="logoMobile" role="img" aria-label="Musa & Davide logo">
+    <img src="./logoMobile.png"  alt="">
+    <img src="./logoMobile1.png" alt="">
+  </div>
+
+  <p>Welcome to my landing page!</p>
+</header>
 
   <section id="contact">
     <div class="dropdown">
@@ -203,6 +203,7 @@
   </script>
 </body>
 </html>
+
 
 
 
