@@ -36,17 +36,9 @@
     }
 
     /* Hide desktop logo by default (mobile-first) */
-.logo-desktop { display: none; }
+.logo-desktop { display: block; }
 
 /* MOBILE: two logos stacked, bigger */
-.logo-mobile {
-  display: grid;
-  grid-template-columns: 1fr;   /* stack vertically */
-  gap: 28px;                    /* space between the two logos */
-  justify-items: center;        /* center each image */
-  width: min(95vw, 720px);      /* bigger on phones, but capped */
-  margin: 0 auto 16px;
-}
 
 .logo-mobile img {
   width: 100%;                  /* each logo fills the wrapper width */
@@ -223,6 +215,7 @@
   </script>
 </body>
 </html>
+
 
 
 
