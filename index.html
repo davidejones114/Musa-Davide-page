@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Keep this: it shows in the browser tab, bookmarks, and helps Google -->
   <title>Musa &amp; Davide</title>
   <meta name="description" content="Musa & Davide — landing page e contatti." />
 
@@ -15,6 +14,9 @@
       --paper: #ffffff;
       --text: #222;
       --muted: #555;
+      --shadow: rgba(0,0,0,0.12);
+      --gap: 12px;
+      --radius: 12px;
     }
 
     body{
@@ -22,14 +24,14 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color: var(--text);
 
-      /* Wallpaper logo background (repeating) */
+      /* Wallpaper logo background (ripetuto) */
       background-image: url("./logo.png");
       background-repeat: repeat;
       background-size: 180px auto;
       background-position: top left;
     }
 
-    /* White center column */
+    /* Colonna bianca centrale */
     .page{
       width: 820px;
       margin: 0 auto;
@@ -39,18 +41,15 @@
       padding: 40px 28px 60px;
     }
 
-    /* Fit smaller screens */
     @media (max-width: 860px){
       .page{
         width: 92vw;
         padding: 28px 18px 50px;
       }
-      body{
-        background-size: 140px auto;
-      }
+      body{ background-size: 140px auto; }
     }
 
-    /* Top logo: desktop vs mobile */
+    /* Logo desktop vs mobile */
     .logo-desktop{ display:block; margin: 0 auto 18px; width: 520px; height:auto; }
     .logo-mobile{ display:none; margin: 0 auto 18px; width: 90%; max-width: 420px; height:auto; }
 
@@ -71,7 +70,7 @@
       font-size: 1.05rem;
     }
 
-    /* Visually hidden (kept for SEO + accessibility) */
+    /* h1 nascosto: SEO + accessibilità */
     .sr-only{
       position:absolute;
       width:1px;
@@ -84,7 +83,7 @@
       border:0;
     }
 
-    /* CONTACT */
+    /* CONTATTI */
     .contact{
       margin-top: 26px;
       text-align:center;
@@ -94,10 +93,10 @@
       font-size: 1.4rem;
     }
 
-    /* Mobile default: vertical */
+    /* Mobile: verticale, Desktop: orizzontale */
     .contact-buttons{
       display:flex;
-      flex-direction: column;
+      flex-direction: column;   /* mobile */
       gap: 12px;
       max-width: 420px;
       margin: 0 auto;
@@ -115,18 +114,16 @@
       padding: 14px 16px;
       border-radius: 12px;
       font-weight: 700;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+      box-shadow: 0 6px 14px var(--shadow);
     }
     .contact-btn:hover{ background: var(--brand-dark); }
 
-    /* WhatsApp logo icon file (put whatsapp.svg or whatsapp.png in the same folder as index.html) */
     .contact-icon{
       width: 22px;
       height: 22px;
       display:block;
     }
 
-    /* Desktop: horizontal buttons */
     @media (min-width: 768px){
       .contact-buttons{ flex-direction: row; }
       .contact-btn{ flex: 1; }
@@ -141,7 +138,7 @@
       width: 100%;
     }
 
-    /* GALLERY */
+    /* ===== GALLERY (CAROUSEL) ===== */
     .gallery{
       margin-top: 10px;
     }
@@ -150,63 +147,120 @@
       margin: 0 0 14px;
       font-size: 1.4rem;
     }
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .grid img{
-      width:100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 12px;
-      display:block;
+
+    .carousel{
+      position: relative;
+      margin-top: 10px;
     }
 
-    @media (max-width: 768px){
-      .grid{ grid-template-columns: repeat(2, 1fr); }
-      .grid img{ height: 180px; }
+    /* Area scrollabile: swipe su mobile + scroll con mouse/trackpad */
+    .carousel-viewport{
+      display: flex;
+      gap: var(--gap);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;     /* “scatti” su ogni foto */
+      scroll-behavior: smooth;
+      padding: 6px 4px;
+
+      /* swipe più fluido su iOS */
+      -webkit-overflow-scrolling: touch;
     }
-    @media (max-width: 460px){
-      .grid{ grid-template-columns: 1fr; }
-      .grid img{ height: 200px; }
+
+    /* Nasconde scrollbar (resta comunque scrollabile) */
+    .carousel-viewport::-webkit-scrollbar{ display: none; }
+    .carousel-viewport{ scrollbar-width: none; }
+
+    /* Ogni card/foto */
+    .slide{
+      flex: 0 0 calc((100% - (2 * var(--gap))) / 3);  /* DESKTOP: 3 foto visibili */
+      scroll-snap-align: start;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 6px 14px var(--shadow);
+      background: #fff;
+    }
+
+    .slide img{
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* MOBILE: 1 foto visibile */
+    @media (max-width: 768px){
+      .slide{
+        flex: 0 0 100%;
+      }
+      .slide img{
+        height: 240px;
+      }
+    }
+
+    /* Bottoni freccia */
+    .carousel-btn{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.15);
+      background: white;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      user-select: none;
+    }
+
+    .carousel-btn:disabled{
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .carousel-btn.prev{ left: -10px; }
+    .carousel-btn.next{ right: -10px; }
+
+    /* Su schermi piccoli, sposto un po’ le frecce dentro */
+    @media (max-width: 860px){
+      .carousel-btn.prev{ left: 4px; }
+      .carousel-btn.next{ right: 4px; }
     }
   </style>
 </head>
 
 <body>
   <main class="page">
-
-    <!-- Hidden H1: helps SEO + accessibility; logo is the visible "title" -->
+    <!-- H1 nascosto per SEO (logo è il “titolo visivo”) -->
     <h1 class="sr-only">Musa &amp; Davide</h1>
 
-    <!-- Visible logo title (desktop vs mobile) -->
+    <!-- Logo visibile (desktop vs mobile) -->
     <img src="./logo.png" class="logo-desktop" alt="Musa &amp; Davide">
     <img src="./logoMobile.png" class="logo-mobile" alt="Musa &amp; Davide">
 
-    <!-- HERO (no visible H1) -->
+    <!-- HERO -->
     <section class="hero">
       <p>
         A short sentence describing who you are / what you do. Keep it simple and friendly.
       </p>
     </section>
 
-    <!-- CONTACT BUTTONS -->
+    <!-- CONTATTI -->
     <section class="contact">
       <h2>Contattami</h2>
 
       <div class="contact-buttons">
-        <!-- WhatsApp: blank message
-             Put whatsapp.svg (recommended) or whatsapp.png in the same folder as index.html -->
+        <!-- WhatsApp: messaggio vuoto -->
+        <!-- Metti un file "whatsapp.svg" (o .png) in public/ e usa lo stesso nome qui -->
         <a class="contact-btn" href="https://wa.me/393471234567" target="_blank" rel="noopener">
           <img class="contact-icon" src="./whatsapp.svg" alt="" aria-hidden="true">
           <span>WhatsApp</span>
         </a>
 
-        <!-- Add more later -->
+        <!-- Qui aggiungerai altri social in futuro -->
         <!--
-        <a class="contact-btn" href="https://t.me/yourusername" target="_blank" rel="noopener">
-          <img class="contact-icon" src="./telegram.svg" alt="" aria-hidden="true">
+        <a class="contact-btn" href="https://t.me/username" target="_blank" rel="noopener">
           <span>Telegram</span>
         </a>
         -->
@@ -215,35 +269,75 @@
 
     <hr class="divider">
 
-    <!-- GALLERY -->
+    <!-- GALLERY (3 desktop / 1 mobile + frecce + swipe) -->
     <section class="gallery">
       <h2>Gallery</h2>
 
-      <div class="grid">
-        <!-- Replace with your real images (put them in the same folder as index.html) -->
-        <img src="./photo1.jpg" alt="Gallery photo 1">
-        <img src="./photo2.jpg" alt="Gallery photo 2">
-        <img src="./photo3.jpg" alt="Gallery photo 3">
-        <img src="./photo4.jpg" alt="Gallery photo 4">
-        <img src="./photo5.jpg" alt="Gallery photo 5">
-        <img src="./photo6.jpg" alt="Gallery photo 6">
+      <div class="carousel" data-carousel>
+        <button class="carousel-btn prev" type="button" aria-label="Foto precedente" data-prev>
+          ‹
+        </button>
+
+        <div class="carousel-viewport" data-viewport>
+          <!-- Sostituisci i nomi con le tue immagini reali dentro public/ -->
+          <div class="slide"><img src="./photo1.jpg" alt="Foto 1"></div>
+          <div class="slide"><img src="./photo2.jpg" alt="Foto 2"></div>
+          <div class="slide"><img src="./photo3.jpg" alt="Foto 3"></div>
+          <div class="slide"><img src="./photo4.jpg" alt="Foto 4"></div>
+          <div class="slide"><img src="./photo5.jpg" alt="Foto 5"></div>
+          <div class="slide"><img src="./photo6.jpg" alt="Foto 6"></div>
+        </div>
+
+        <button class="carousel-btn next" type="button" aria-label="Foto successiva" data-next>
+          ›
+        </button>
       </div>
     </section>
-
   </main>
+
+  <script>
+    // Frecce: scorrono di 1 "slide" per click (desktop o mobile).
+    // Su mobile funziona anche lo swipe perché il viewport è overflow-x:auto.
+    (function () {
+      const carousel = document.querySelector('[data-carousel]');
+      if (!carousel) return;
+
+      const viewport = carousel.querySelector('[data-viewport]');
+      const prevBtn = carousel.querySelector('[data-prev]');
+      const nextBtn = carousel.querySelector('[data-next]');
+
+      function getStep() {
+        const firstSlide = viewport.querySelector('.slide');
+        if (!firstSlide) return 300;
+        const slideRect = firstSlide.getBoundingClientRect();
+
+        // gap: leggo la variabile CSS --gap (es. "12px")
+        const gapStr = getComputedStyle(document.documentElement).getPropertyValue('--gap').trim();
+        const gap = parseFloat(gapStr) || 12;
+
+        return slideRect.width + gap;
+      }
+
+      function updateButtons() {
+        const maxScrollLeft = viewport.scrollWidth - viewport.clientWidth;
+        prevBtn.disabled = viewport.scrollLeft <= 2;
+        nextBtn.disabled = viewport.scrollLeft >= (maxScrollLeft - 2);
+      }
+
+      prevBtn.addEventListener('click', () => {
+        viewport.scrollBy({ left: -getStep(), behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        viewport.scrollBy({ left: getStep(), behavior: 'smooth' });
+      });
+
+      viewport.addEventListener('scroll', updateButtons, { passive: true });
+      window.addEventListener('resize', updateButtons);
+
+      // init
+      updateButtons();
+    })();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
