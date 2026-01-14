@@ -1,220 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Musa & Davide</title>
+
+  <!-- Keep this: it shows in the browser tab, bookmarks, and helps Google -->
+  <title>Musa &amp; Davide</title>
+  <meta name="description" content="Musa & Davide — landing page e contatti." />
 
   <style>
-    :root {
-      --bg: #f8f9fa;
-      --fg: #222;
-      --brand: #FFA500;      /* orange */
-      --brand-dark: #cc7000; /* darker orange for hover/focus */
-      --border: rgba(0,0,0,0.12);
-      --shadow: rgba(0,0,0,0.10);
+    :root{
+      --brand: #FFA500;
+      --brand-dark: #cc7000;
+      --paper: #ffffff;
+      --text: #222;
+      --muted: #555;
     }
 
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.5;
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+
+      /* Wallpaper logo background (repeating) */
+      background-image: url("./logo.png");
+      background-repeat: repeat;
+      background-size: 180px auto;
+      background-position: top left;
     }
 
-    /* ===== Header / logos ===== */
-    header {
-      max-width: 1000px;
+    /* White center column */
+    .page{
+      width: 820px;
       margin: 0 auto;
-      padding: 64px 20px 40px;
-      text-align: center;
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 2px 8px var(--shadow);
+      min-height: 100vh;
+      background: var(--paper);
+      box-shadow: 0 0 30px rgba(0,0,0,0.15);
+      padding: 40px 28px 60px;
     }
 
-    /* Hide desktop logo by default (mobile-first) */
-.logo-desktop { display: none; }
-
-/* MOBILE: two logos stacked, bigger */
-
-.logo-mobile img {
-  width: 100%;                  /* each logo fills the wrapper width */
-  height: auto;
-  display: block;
-}
-
-
-    @media (min-width: 600px and (max-width: 899px ) {
-  .logo-mobile {
-    width: min(90vw, 760px);
-    gap: 32px;
-  }
-}
-
-    }
-
-    /* Desktop: show single wide logo, hide the two mobile images */
-    @media (min-width: 900px) {
-      .logo-mobile { display: none; }
-
-      .logo-desktop {
-        display: block;
-        margin: 0 auto 16px;
-        width: clamp(900px, 30vw, 1000px); /* cap desktop size */
-        height: auto;
+    /* Fit smaller screens */
+    @media (max-width: 860px){
+      .page{
+        width: 92vw;
+        padding: 28px 18px 50px;
+      }
+      body{
+        background-size: 140px auto;
       }
     }
 
-    header p {
-      margin: 0;
-      color: #555;
+    /* Top logo: desktop vs mobile */
+    .logo-desktop{ display:block; margin: 0 auto 18px; width: 520px; height:auto; }
+    .logo-mobile{ display:none; margin: 0 auto 18px; width: 90%; max-width: 420px; height:auto; }
+
+    @media (max-width: 768px){
+      .logo-desktop{ display:none; }
+      .logo-mobile{ display:block; }
     }
 
-    /* ===== Orange dropdown ===== */
-    #contact {
+    /* HERO */
+    .hero{
+      text-align:center;
+      padding: 10px 0 18px;
+    }
+    .hero p{
+      margin: 0 auto;
       max-width: 560px;
-      margin: 40px auto 80px;
-      padding: 0 20px;
-      text-align: center;
+      color: var(--muted);
+      font-size: 1.05rem;
     }
-    .dropdown {
-      display: inline-block;
-      text-align: left;
-      position: relative;
+
+    /* Visually hidden (kept for SEO + accessibility) */
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
     }
-    .dropdown button {
-      appearance: none;
-      border: 1px solid var(--border);
+
+    /* CONTACT */
+    .contact{
+      margin-top: 26px;
+      text-align:center;
+    }
+    .contact h2{
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+    }
+
+    /* Mobile default: vertical */
+    .contact-buttons{
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .contact-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+
+      text-decoration:none;
       background: var(--brand);
-      color: #fff;
-      padding: 12px 16px;
-      font-size: 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 2px 6px var(--shadow);
-    }
-    .dropdown button:hover { filter: brightness(0.98); }
-    .dropdown button:focus-visible {
-      outline: 3px solid var(--brand-dark);
-      outline-offset: 2px;
-    }
-
-    .menu {
-      position: absolute;
-      z-index: 10;
-      margin-top: 10px;
-      list-style: none;
-      padding: 8px;
+      color:white;
+      padding: 14px 16px;
       border-radius: 12px;
-      background: var(--brand);      /* orange background */
-      box-shadow: 0 10px 20px var(--shadow);
-      min-width: 240px;
-      border: 1px solid var(--border);
+      font-weight: 700;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
     }
-    .menu.hidden { display: none; }
+    .contact-btn:hover{ background: var(--brand-dark); }
 
-    .menu li a {
-      display: block;
-      padding: 10px 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      color: #fff;                   /* white text on orange */
-      font-weight: 600;
+    /* WhatsApp logo icon file (put whatsapp.svg or whatsapp.png in the same folder as index.html) */
+    .contact-icon{
+      width: 22px;
+      height: 22px;
+      display:block;
     }
-    .menu li a:hover,
-    .menu li a:focus-visible {
-      background: var(--brand-dark); /* darker orange on hover */
-    }
-    .menu li + li { margin-top: 4px; }
-    .icon { margin-right: 8px; }
 
-    @media (prefers-reduced-motion: no-preference) {
-      .menu { transition: opacity 120ms ease, transform 120ms ease; }
-      .menu.hidden { opacity: 0; transform: translateY(-4px); }
+    /* Desktop: horizontal buttons */
+    @media (min-width: 768px){
+      .contact-buttons{ flex-direction: row; }
+      .contact-btn{ flex: 1; }
+    }
+
+    /* Divider */
+    .divider{
+      margin: 34px auto;
+      height: 1px;
+      background: rgba(0,0,0,0.10);
+      border: 0;
+      width: 100%;
+    }
+
+    /* GALLERY */
+    .gallery{
+      margin-top: 10px;
+    }
+    .gallery h2{
+      text-align:center;
+      margin: 0 0 14px;
+      font-size: 1.4rem;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .grid img{
+      width:100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      display:block;
+    }
+
+    @media (max-width: 768px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+      .grid img{ height: 180px; }
+    }
+    @media (max-width: 460px){
+      .grid{ grid-template-columns: 1fr; }
+      .grid img{ height: 200px; }
     }
   </style>
 </head>
+
 <body>
+  <main class="page">
 
-  <header>
-    <!-- Desktop: single wide PNG (shown ≥900px) -->
-    <img
-      src="./logo.png"
-      alt="Musa &amp; Davide logo"
-      class="logo-desktop"
-      decoding="async"
-      fetchpriority="high">
+    <!-- Hidden H1: helps SEO + accessibility; logo is the visible "title" -->
+    <h1 class="sr-only">Musa &amp; Davide</h1>
 
-    <!-- Mobile: two PNGs (shown <900px).
-         The wrapper carries the accessible name so the inner images can be decorative (alt=""). -->
-    <div class="logo-mobile" role="img" aria-label="Musa & Davide logo">
-      <img src="./logoMobile.png" alt="">
-    </div>
+    <!-- Visible logo title (desktop vs mobile) -->
+    <img src="./logo.png" class="logo-desktop" alt="Musa &amp; Davide">
+    <img src="./logoMobile.png" class="logo-mobile" alt="Musa &amp; Davide">
 
-    <p>Welcome to my landing page!</p>
-  </header>
+    <!-- HERO (no visible H1) -->
+    <section class="hero">
+      <p>
+        A short sentence describing who you are / what you do. Keep it simple and friendly.
+      </p>
+    </section>
 
-  <section id="contact">
-    <div class="dropdown">
-      <button id="contact-button" type="button" aria-haspopup="true" aria-expanded="false">
-        Choose a contact method ▾
-      </button>
+    <!-- CONTACT BUTTONS -->
+    <section class="contact">
+      <h2>Contattami</h2>
 
-      <ul id="contact-menu" class="menu hidden" role="menu" aria-label="Contact options">
-        <!-- Replace with your real details -->
-        <li role="none">
-          <a role="menuitem" href="https://wa.me/1234567890" target="_blank" rel="noopener">
-            <span class="icon">📱</span> WhatsApp
-          </a>
-        </li>
-        <li role="none">
-          <a role="menuitem" href="https://t.me/yourusername" target="_blank" rel="noopener">
-            <span class="icon">✈️</span> Telegram
-          </a>
-        </li>
-        <li role="none">
-          <a role="menuitem" href="sms:+1234567890">
-            <span class="icon">💬</span> SMS
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
+      <div class="contact-buttons">
+        <!-- WhatsApp: blank message
+             Put whatsapp.svg (recommended) or whatsapp.png in the same folder as index.html -->
+        <a class="contact-btn" href="https://wa.me/393471234567" target="_blank" rel="noopener">
+          <img class="contact-icon" src="./whatsapp.svg" alt="" aria-hidden="true">
+          <span>WhatsApp</span>
+        </a>
 
-  <script>
-    // Dropdown toggle logic
-    const btn  = document.getElementById('contact-button');
-    const menu = document.getElementById('contact-menu');
+        <!-- Add more later -->
+        <!--
+        <a class="contact-btn" href="https://t.me/yourusername" target="_blank" rel="noopener">
+          <img class="contact-icon" src="./telegram.svg" alt="" aria-hidden="true">
+          <span>Telegram</span>
+        </a>
+        -->
+      </div>
+    </section>
 
-    function openMenu() {
-      menu.classList.remove('hidden');
-      btn.setAttribute('aria-expanded', 'true');
-    }
-    function closeMenu() {
-      menu.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
-    }
-    function toggleMenu() {
-      if (menu.classList.contains('hidden')) openMenu(); else closeMenu();
-    }
+    <hr class="divider">
 
-    btn.addEventListener('click', toggleMenu);
+    <!-- GALLERY -->
+    <section class="gallery">
+      <h2>Gallery</h2>
 
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
-    });
+      <div class="grid">
+        <!-- Replace with your real images (put them in the same folder as index.html) -->
+        <img src="./photo1.jpg" alt="Gallery photo 1">
+        <img src="./photo2.jpg" alt="Gallery photo 2">
+        <img src="./photo3.jpg" alt="Gallery photo 3">
+        <img src="./photo4.jpg" alt="Gallery photo 4">
+        <img src="./photo5.jpg" alt="Gallery photo 5">
+        <img src="./photo6.jpg" alt="Gallery photo 6">
+      </div>
+    </section>
 
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
-  </script>
+  </main>
 </body>
 </html>
+
+
 
 
 
