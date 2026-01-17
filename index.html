@@ -298,9 +298,10 @@
           <div class="slide"><img src="./photo5.jpg" alt="Foto 5"></div>
           <div class="slide"><img src="./photo6.jpg" alt="Foto 6"></div>
           <div class="slide">
-  <video class="media" controls playsinline preload="metadata">
-    <source src="./video1.mp4" type="video/mp4">
-  </video>
+ <video class="media" autoplay muted loop playsinline preload="metadata">
+  <source src="./video1.mp4" type="video/mp4">
+</video>
+
 </div>
 
         </div>
@@ -356,8 +357,24 @@
       updateButtons();
     })();
   </script>
+ <script>
+  // Forza muto permanente su tutti i video della gallery
+  document.querySelectorAll('video.media').forEach(v => {
+    v.muted = true;
+    v.volume = 0;
+
+    v.addEventListener('volumechange', () => {
+      if (!v.muted || v.volume !== 0) {
+        v.muted = true;
+        v.volume = 0;
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
+
 
 
 
